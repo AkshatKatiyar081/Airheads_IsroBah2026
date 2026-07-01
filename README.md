@@ -4,10 +4,10 @@ This repository contains the complete implementation for our submission to the *
 
 ---
 
-## 🌍 Objective 1: High-Resolution 6-Pollutant AQI Prediction
+##  Objective 1: High-Resolution 6-Pollutant AQI Prediction
 **Goal:** Predict a comprehensive 6-pollutant Air Quality Index (PM2.5, PM10, NO₂, SO₂, O₃, CO) at a high spatial resolution (0.25° grid) over India by fusing Sentinel-5P satellite retrievals, ERA5 meteorological reanalysis, and CPCB ground network data.
 
-### 🧠 The Two-Model Strategy
+###  The Two-Model Strategy
 We tackled this problem by developing two parallel architectural philosophies:
 
 #### Model A (Implemented & Evaluated)
@@ -26,16 +26,16 @@ While Model A is highly accurate, it lacks temporal memory and physical constrai
 
 ---
 
-## 🔥 Objective 2: HCHO Source Apportionment & Transport Pathways
+##  Objective 2: HCHO Source Apportionment & Transport Pathways
 **Goal:** Trace the origins and transport pathways of Formaldehyde (HCHO) anomalies over the Indo-Gangetic Plain during the severe pollution month of November 2023.
 
-### 🔬 Methodology & Pipeline
+###  Methodology & Pipeline
 We built an automated, end-to-end data processing and clustering pipeline (`run_objective_2.py`) to analyze HCHO spikes and correlate them with regional events:
 - **Spatial Clustering (DBSCAN):** Identified dense HCHO hotspots over Punjab, Haryana, and Delhi.
 - **Fire Correlation & Lag Analysis:** Correlated HCHO anomalies with MODIS/VIIRS active fire counts, establishing a clear 2-day transport lag between stubble burning events and HCHO spikes in downstream urban centers.
 - **Trajectory Mapping:** Integrated wind field overlays and trajectory frequencies to visualize the precise atmospheric pathways carrying secondary organic aerosols.
 
-### 📊 Interactive Dashboard
+###  Interactive Dashboard
 We developed a backend API (`dashboard_api.py`) to serve these findings dynamically. It provides real-time access to the processed HCHO correlation matrices, temporal lags, and spatial clusters, enabling policymakers to visually explore the cause-and-effect relationship between agricultural fires and urban formaldehyde levels.
 
 *See `objective_2/README.md` for execution instructions and pipeline details.*
