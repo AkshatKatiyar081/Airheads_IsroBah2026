@@ -42,7 +42,7 @@ We developed a backend API (`dashboard_api.py`) to serve these findings dynamica
 
 ---
 
-## 🛠️ Data Sources
+## Data Sources
 - **ESA Sentinel-5P (TROPOMI):** NO₂, SO₂, CO, HCHO, AOD.
 - **ECMWF ERA5:** Meteorological variables (Wind, BLH, Temperature, Solar Radiation).
 - **ISRO/MOSDAC INSAT-3D:** Complementary Aerosol Optical Depth (AOD).
