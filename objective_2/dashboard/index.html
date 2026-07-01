@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objective 2: HCHO & Stubble Burning Dashboard</title>
+    <!-- Mapbox GL JS -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+    <!-- deck.gl -->
+    <script src="https://unpkg.com/deck.gl@8.9.6/dist.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Map Container -->
+        <div id="map-container"></div>
+
+        <!-- No Data Banner -->
+        <div id="no-data-banner" class="hidden">
+            <h2>No Data Available</h2>
+            <p>Heavy cloud cover prevented valid HCHO retrievals on this day.</p>
+        </div>
+
+        <!-- Floating Control Panel -->
+        <div id="control-panel">
+            <h2>Data Layers</h2>
+            
+            <div class="control-group">
+                <h3>Base Metric</h3>
+                <label>
+                    <input type="checkbox" id="layer-hcho" checked> HCHO Concentration
+                </label>
+            </div>
+
+            <div class="control-group">
+                <h3>Overlays</h3>
+                <label>
+                    <input type="checkbox" id="layer-fires" checked> Active Fires (MODIS/VIIRS)
+                </label>
+                <label>
+                    <input type="checkbox" id="layer-hotspots"> Consensus Hotspots
+                </label>
+                <label>
+                    <input type="checkbox" id="layer-disagree"> Disagreement View (A vs C)
+                </label>
+                <label>
+                    <input type="checkbox" id="layer-dbscan"> DBSCAN Clusters
+                </label>
+                <label>
+                    <input type="checkbox" id="layer-uncertainty"> Uncertainty Hatching (Clouds)
+                </label>
+            </div>
+
+            <div class="control-group">
+                <h3>Region Zoom</h3>
+                <select id="region-select">
+                    <option value="india">Whole India (IGP Focus)</option>
+                    <option value="punjab">SW Punjab / Haryana</option>
+                    <option value="up">Western UP</option>
+                    <option value="central">Central Forest Zone</option>
+                </select>
+            </div>
+
+            <div class="legend">
+                <p><strong>Methodology:</strong></p>
+                <p class="small">Consensus = Agreement of ≥2 methods (95th Pct, MAD, Lit 4e-4).</p>
+                <p class="small">DBSCAN = eps 0.5°, min 5 px.</p>
+                <p class="small">Data: S5P TROPOMI, FIRMS.</p>
+            </div>
+        </div>
+
+        <!-- Date Slider at Bottom -->
+        <div id="slider-panel">
+            <div class="slider-header">
+                <span id="current-date-display">2023-10-01</span>
+                <span id="loading-indicator" class="hidden">Loading...</span>
+            </div>
+            <input type="range" id="date-slider" min="0" max="122" value="0">
+        </div>
+
+        <!-- Chart Panel -->
+        <div id="chart-panel">
+            <canvas id="igp-chart"></canvas>
+        </div>
+        
+        <!-- Tooltip -->
+        <div id="tooltip"></div>
+    </div>
+
+    <!-- Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
